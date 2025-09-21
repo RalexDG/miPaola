@@ -3,105 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solo Audio de YouTube</title>
+    <title>Flores Amarillas para Paola - 21 de Septiembre</title>
+    <meta name="description" content="Un ramillete de flores amarillas especial para Paola en este 21 de septiembre">
+    <meta property="og:title" content="Flores Amarillas para Paola">
+    <meta property="og:description" content="Un regalo especial de flores amarillas para Paola">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        * {
             margin: 0;
-            flex-direction: column;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: system-ui, ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #fef7cd 0%, #fff9e6 100%);
+            min-height: 100vh;
+            color: #2d1810;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
         .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: #8b5a00;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #6b4423;
+            font-weight: 300;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Updated flowers container to create organic border design */
+        .flowers-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+        
+        .flower-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .flower {
+            position: relative;
+            animation: gentleSway 4s ease-in-out infinite;
+            margin: 0 -5px;
+        }
+        
+        .flower:nth-child(1) { animation-delay: 0s; transform: translateY(-10px); }
+        .flower:nth-child(2) { animation-delay: 0.5s; transform: translateY(-5px); }
+        .flower:nth-child(3) { animation-delay: 1s; transform: translateY(-15px); }
+        
+        @keyframes gentleSway {
+            0%, 100% { transform: translateY(var(--y-offset, 0)) rotate(0deg); }
+            50% { transform: translateY(calc(var(--y-offset, 0) - 8px)) rotate(2deg); }
+        }
+        
+        .message-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 40px);
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(139, 90, 0, 0.1);
+            border: 1px solid rgba(255, 179, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .message-card p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #5d4037;
+            margin-bottom: 20px;
+            font-style: italic;
             text-align: center;
         }
-        h1 {
-            color: #333;
+        
+        .signature {
+            text-align: right;
+            font-weight: 500;
+            color: #8b5a00;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
-        /* Esto oculta el reproductor de video, pero el audio sigue reproduciéndose */
-        #audio-player {
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
+        
+        .audio-player {
+            text-align: center;
+            margin: 30px 0;
         }
-        /* Estilo para el botón de control */
-        button {
-            background-color: #28a745;
-            color: white;
+        
+        .play-button {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
             border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            border-radius: 50px;
+            padding: clamp(12px 24px, 3vw, 15px 30px);
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #2d1810;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 179, 0, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-        button:hover {
-            background-color: #218838;
+        
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.4);
+        }
+        
+        .play-button:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #8b5a00;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .date {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .credit {
+            opacity: 0.7;
+            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+        }
+        
+        /* Floating petals animation */
+        .petal {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 50% 0;
+            pointer-events: none;
+            animation: float 8s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        /* Enhanced responsive design for all screen sizes */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .flowers-container {
+                height: 150px;
+            }
+            
+            .flower-border {
+                height: 120px;
+            }
+            
+            .flower {
+                transform: scale(0.8);
+            }
+        }
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .flowers-container {
+                height: 180px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .container {
+                max-width: 800px;
+                padding: 40px;
+            }
+            
+            .flowers-container {
+                height: 220px;
+            }
+            
+            .flower-border {
+                height: 170px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Reproduciendo solo audio del video</h1>
-        <p>El reproductor está oculto, pero el audio se está reproduciendo.</p>
-        <button id="toggleButton">Pausar/Reproducir</button>
+        <header class="hero">
+            <h1>Para Paola, en este 21 de septiembre</h1>
+            <p>Un ramillete de flores amarillas que florecen en mi corazón</p>
+        </header>
+        
+        <div class="flowers-container">
+            <div class="flower-border">
+                <!-- Large white lily with yellow center - LEFT -->
+                <svg class="flower" width="120" height="160" viewBox="0 0 120 160" style="margin-right: 40px;">
+                    <!-- Tallo más grueso -->
+                    <rect x="58" y="80" width="6" height="80" fill="#4caf50" rx="3"/>
+                    <!-- Hojas más grandes -->
+                    <ellipse cx="45" cy="110" rx="12" ry="25" fill="#66bb6a" transform="rotate(-15 45 110)"/>
+                    <ellipse cx="75" cy="120" rx="10" ry="22" fill="#66bb6a" transform="rotate(15 75 120)"/>
+                    <!-- Pétalos de lirio más detallados con forma característica -->
+                    <g transform="translate(61,50)">
+                        <!-- Pétalos principales más largos y elegantes -->
+                        <ellipse cx="0" cy="-28" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1"/>
+                        <ellipse cx="24" cy="-14" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1" transform="rotate(60)"/>
+                        <ellipse cx="24" cy="14" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1" transform="rotate(120)"/>
+                        <ellipse cx="0" cy="28" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1" transform="rotate(180)"/>
+                        <ellipse cx="-24" cy="14" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1" transform="rotate(240)"/>
+                        <ellipse cx="-24" cy="-14" rx="8" ry="25" fill="#ffffff" stroke="#f5f5f5" stroke-width="1" transform="rotate(300)"/>
+                        <!-- Líneas características del lirio -->
+                        <line x1="0" y1="-20" x2="0" y2="-5" stroke="#ffb300" stroke-width="1"/>
+                        <line x1="17" y1="-10" x2="8" y2="-2" stroke="#ffb300" stroke-width="1"/>
+                        <line x1="17" y1="10" x2="8" y2="2" stroke="#ffb300" stroke-width="1"/>
+                        <line x1="0" y1="20" x2="0" y2="5" stroke="#ffb300" stroke-width="1"/>
+                        <line x1="-17" y1="10" x2="-8" y2="2" stroke="#ffb300" stroke-width="1"/>
+                        <line x1="-17" y1="-10" x2="-8" y2="-2" stroke="#ffb300" stroke-width="1"/>
+                    </g>
+                    <!-- Centro amarillo más prominente -->
+                    <circle cx="61" cy="50" r="12" fill="#ffd700"/>
+                    <circle cx="61" cy="50" r="6" fill="#ff8f00"/>
+                    <!-- Estambres del lirio -->
+                    <circle cx="58" cy="47" r="2" fill="#8b4513"/>
+                    <circle cx="64" cy="47" r="2" fill="#8b4513"/>
+                    <circle cx="61" cy="53" r="2" fill="#8b4513"/>
+                </svg>
+                
+                <!-- Large sunflower - CENTER -->
+                <svg class="flower" width="140" height="180" viewBox="0 0 140 180" style="margin: 0 20px;">
+                    <!-- Tallo principal más grueso -->
+                    <rect x="68" y="90" width="8" height="90" fill="#4caf50" rx="4"/>
+                    <!-- Hojas grandes más naturales -->
+                    <ellipse cx="50" cy="130" rx="15" ry="25" fill="#66bb6a" transform="rotate(-20 50 130)"/>
+                    <ellipse cx="90" cy="140" rx="12" ry="20" fill="#66bb6a" transform="rotate(15 90 140)"/>
+                    <!-- Girasol rediseñado con pétalos que se conectan al centro -->
+                    <g transform="translate(70,55)">
+                        <!-- Pétalos que se conectan directamente al centro -->
+                        <ellipse cx="0" cy="-25" rx="7" ry="20" fill="#ffd700"/>
+                        <ellipse cx="18" cy="-18" rx="7" ry="20" fill="#ffd700" transform="rotate(45)"/>
+                        <ellipse cx="25" cy="0" rx="7" ry="20" fill="#ffd700" transform="rotate(90)"/>
+                        <ellipse cx="18" cy="18" rx="7" ry="20" fill="#ffd700" transform="rotate(135)"/>
+                        <ellipse cx="0" cy="25" rx="7" ry="20" fill="#ffd700" transform="rotate(180)"/>
+                        <ellipse cx="-18" cy="18" rx="7" ry="20" fill="#ffd700" transform="rotate(225)"/>
+                        <ellipse cx="-25" cy="0" rx="7" ry="20" fill="#ffd700" transform="rotate(270)"/>
+                        <ellipse cx="-18" cy="-18" rx="7" ry="20" fill="#ffd700" transform="rotate(315)"/>
+                        <!-- Segunda capa de pétalos más pequeños intercalados -->
+                        <ellipse cx="13" cy="-22" rx="5" ry="16" fill="#ffb300" transform="rotate(22.5)"/>
+                        <ellipse cx="22" cy="-13" rx="5" ry="16" fill="#ffb300" transform="rotate(67.5)"/>
+                        <ellipse cx="22" cy="13" rx="5" ry="16" fill="#ffb300" transform="rotate(112.5)"/>
+                        <ellipse cx="13" cy="22" rx="5" ry="16" fill="#ffb300" transform="rotate(157.5)"/>
+                        <ellipse cx="-13" cy="22" rx="5" ry="16" fill="#ffb300" transform="rotate(202.5)"/>
+                        <ellipse cx="-22" cy="13" rx="5" ry="16" fill="#ffb300" transform="rotate(247.5)"/>
+                        <ellipse cx="-22" cy="-13" rx="5" ry="16" fill="#ffb300" transform="rotate(292.5)"/>
+                        <ellipse cx="-13" cy="-22" rx="5" ry="16" fill="#ffb300" transform="rotate(337.5)"/>
+                        <!-- Tercera capa de pétalos internos que se superponen al centro -->
+                        <ellipse cx="0" cy="-15" rx="4" ry="12" fill="#fff59d"/>
+                        <ellipse cx="11" cy="-11" rx="4" ry="12" fill="#fff59d" transform="rotate(45)"/>
+                        <ellipse cx="15" cy="0" rx="4" ry="12" fill="#fff59d" transform="rotate(90)"/>
+                        <ellipse cx="11" cy="11" rx="4" ry="12" fill="#fff59d" transform="rotate(135)"/>
+                        <ellipse cx="0" cy="15" rx="4" ry="12" fill="#fff59d" transform="rotate(180)"/>
+                        <ellipse cx="-11" cy="11" rx="4" ry="12" fill="#fff59d" transform="rotate(225)"/>
+                        <ellipse cx="-15" cy="0" rx="4" ry="12" fill="#fff59d" transform="rotate(270)"/>
+                        <ellipse cx="-11" cy="-11" rx="4" ry="12" fill="#fff59d" transform="rotate(315)"/>
+                    </g>
+                    <!-- Centro marrón que se superpone a los pétalos internos -->
+                    <circle cx="70" cy="55" r="16" fill="#5d4037"/>
+                    <circle cx="70" cy="55" r="11" fill="#3e2723"/>
+                    <!-- Patrón de semillas en espiral como un girasol real -->
+                    <circle cx="67" cy="52" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="73" cy="52" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="70" cy="49" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="70" cy="58" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="67" cy="58" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="73" cy="58" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="64" cy="55" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="76" cy="55" r="1.2" fill="#2e2e2e"/>
+                    <circle cx="70" cy="61" r="1.2" fill="#2e2e2e"/>
+                </svg>
+                
+                <!-- Large yellow tulip - RIGHT -->
+                <svg class="flower" width="110" height="170" viewBox="0 0 110 170" style="margin-left: 40px;">
+                    <!-- Tallo grueso -->
+                    <rect x="53" y="80" width="6" height="90" fill="#4caf50" rx="3"/>
+                    <!-- Hojas largas características del tulipán -->
+                    <ellipse cx="35" cy="120" rx="10" ry="35" fill="#66bb6a" transform="rotate(-10 35 120)"/>
+                    <ellipse cx="75" cy="130" rx="8" ry="30" fill="#66bb6a" transform="rotate(10 75 130)"/>
+                    <!-- Tulipán corregido - ahora apunta hacia arriba -->
+                    <g transform="translate(56,60)">
+                        <!-- Pétalos exteriores del tulipán -->
+                        <ellipse cx="-12" cy="-15" rx="8" ry="20" fill="#ffd700" transform="rotate(-15)"/>
+                        <ellipse cx="0" cy="-18" rx="8" ry="22" fill="#ffd700"/>
+                        <ellipse cx="12" cy="-15" rx="8" ry="20" fill="#ffd700" transform="rotate(15)"/>
+                        <!-- Pétalos interiores más claros -->
+                        <ellipse cx="-8" cy="-12" rx="6" ry="16" fill="#fff59d" transform="rotate(-10)"/>
+                        <ellipse cx="0" cy="-15" rx="6" ry="18" fill="#fff59d"/>
+                        <ellipse cx="8" cy="-12" rx="6" ry="16" fill="#fff59d" transform="rotate(10)"/>
+                        <!-- Base del tulipán -->
+                        <ellipse cx="0" cy="5" rx="10" ry="8" fill="#ffb300"/>
+                    </g>
+                    <!-- Centro del tulipán -->
+                    <circle cx="56" cy="50" r="4" fill="#ff8f00"/>
+                    <circle cx="56" cy="50" r="2" fill="#e65100"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="message-card">
+            <p>En este día especial, quiero regalarte estas flores amarillas que representan la alegría y la luz que traes a mi vida. Cada pétalo lleva un pedacito de mi corazón.</p>
+            <div class="signature">— Alex</div>
+        </div>
+        
+        <div class="audio-player">
+            <button class="play-button" id="playButton">
+                ▶️ Reproducir "Flores Amarillas"
+            </button>
+        </div>
+        
+        <footer class="footer">
+            <div class="date">21 de septiembre</div>
+            <div class="credit">Hecho con amor para Paola 💛</div>
+        </footer>
     </div>
 
-    <iframe
-        id="audio-player"
-        src="https://www.youtube.com/embed/dS3J76Id20U?enablejsapi=1&autoplay=1&mute=1"
-        title="Solo audio"
-        frameborder="0"
-        allow="autoplay; encrypted-media">
-    </iframe>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleButton = document.getElementById('toggleButton');
-            const player = document.getElementById('audio-player');
-            let isPlaying = true;
-
-            // Espera a que el reproductor de YouTube esté listo
-            let ytPlayer;
-            window.onYouTubeIframeAPIReady = () => {
-                ytPlayer = new YT.Player('audio-player', {
-                    events: {
-                        'onReady': onPlayerReady
-                    }
-                });
-            };
-
-            const onPlayerReady = (event) => {
-                event.target.playVideo();
-                event.target.unMute();
-            };
-
-            toggleButton.addEventListener('click', () => {
-                if (isPlaying) {
-                    ytPlayer.pauseVideo();
-                    toggleButton.textContent = 'Reproducir';
-                } else {
-                    ytPlayer.playVideo();
-                    toggleButton.textContent = 'Pausar';
-                }
-                isPlaying = !isPlaying;
+        // Floating petals animation
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            petal.style.animationDelay = Math.random() * 2 + 's';
+            
+            const colors = ['#ffd700', '#ffb300', '#fff59d', '#ff8f00'];
+            petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(petal);
+            
+            setTimeout(() => {
+                petal.remove();
+            }, 8000);
+        }
+        
+        // Create petals periodically
+        setInterval(createPetal, 800);
+        
+        // Audio player functionality
+        const playButton = document.getElementById('playButton');
+        let audio = null;
+        let isPlaying = false;
+        
+        playButton.addEventListener('click', function() {
+            if (!audio) {
+                // Create audio element with YouTube video ID
+                // Note: Direct YouTube playback requires iframe embed or YouTube API
+                // For demo purposes, using a placeholder. In production, you'd need:
+                // 1. YouTube iframe API, or 2. Convert to MP3 and host separately
+                
+                // Alternative: Open YouTube in new tab
+                window.open('https://www.youtube.com/watch?v=dS3J76Id20U', '_blank');
+                return;
+            }
+            
+            if (isPlaying) {
+                audio.pause();
+                playButton.innerHTML = '▶️ Reproducir "Flores Amarillas"';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playButton.innerHTML = '⏸️ Pausar "Flores Amarillas"';
+                isPlaying = true;
+            }
+        });
+        
+        // Add gentle hover effect to flowers
+        document.querySelectorAll('.flower').forEach(flower => {
+            flower.addEventListener('mouseenter', function() {
+                this.style.transform += ' scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
             });
-
-            // Carga la API de YouTube para control
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            
+            flower.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace(' scale(1.1)', '');
+            });
+        });
+        
+        // Add click effect to message card
+        document.querySelector('.message-card').addEventListener('click', function() {
+            this.style.transform = 'scale(1.02)';
+            this.style.transition = 'transform 0.2s ease';
+            
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
         });
     </script>
 </body>
