@@ -98,14 +98,15 @@
             height: 150px;
             display: flex;
             align-items: flex-end;
-            justify-content: space-around;
+            justify-content: space-evenly;
+            padding: 0 10px;
             flex-wrap: wrap;
         }
         
         .flower {
             position: relative;
             animation: gentleSway 4s ease-in-out infinite;
-            margin: 0 -5px;
+            margin: 0 -10px;
         }
         
         .flower:nth-child(1) { animation-delay: 0s; transform: translateY(-10px); }
@@ -229,7 +230,7 @@
             }
             
             .flower {
-                transform: scale(0.8);
+                transform: scale(0.6);
             }
         }
         
