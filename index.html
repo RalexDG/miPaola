@@ -373,6 +373,12 @@
                 ▶️ Reproducir "Flores Amarillas"
             </button>
         </div>
+        <iframe id="yt-player"
+        src="https://www.youtube.com/embed/dS3J76Id20U?enablejsapi=1&autoplay=1&controls=0"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
         
         <footer class="footer">
             <div class="date">21 de septiembre</div>
@@ -402,33 +408,38 @@
         // Create petals periodically
         setInterval(createPetal, 800);
         
-        // Audio player functionality
         const playButton = document.getElementById('playButton');
-        let audio = null;
+        let player;
         let isPlaying = false;
-        
-        playButton.addEventListener('click', function() {
-            if (!audio) {
-                // Create audio element with YouTube video ID
-                // Note: Direct YouTube playback requires iframe embed or YouTube API
-                // For demo purposes, using a placeholder. In production, you'd need:
-                // 1. YouTube iframe API, or 2. Convert to MP3 and host separately
-                
-                // Alternative: Open YouTube in new tab
-                window.open('https://www.youtube.com/watch?v=dS3J76Id20U', '_blank');
-                return;
-            }
-            
-            if (isPlaying) {
-                audio.pause();
-                playButton.innerHTML = '▶️ Reproducir "Flores Amarillas"';
-                isPlaying = false;
-            } else {
-                audio.play();
-                playButton.innerHTML = '⏸️ Pausar "Flores Amarillas"';
-                isPlaying = true;
-            }
-        });
+
+        // 1. Cargar la API de Iframe de YouTube de forma asíncrona
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 2. Esta función crea el reproductor una vez que la API está lista
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('yt-player', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // 3. Esta función se ejecuta cuando el reproductor está listo para usarse
+        function onPlayerReady(event) {
+            playButton.addEventListener('click', () => {
+                if (isPlaying) {
+                    player.pauseVideo();
+                    playButton.innerHTML = '▶️ Reproducir "Flores Amarillas"';
+                } else {
+                    player.playVideo();
+                    playButton.innerHTML = '⏸️ Pausar "Flores Amarillas"';
+                }
+                isPlaying = !isPlaying;
+            });
+        }
         
         // Add gentle hover effect to flowers
         document.querySelectorAll('.flower').forEach(flower => {
