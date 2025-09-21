@@ -11,22 +11,6 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
     
     <style>
-    
-    /* Estilos para los pétalos/emojis */
-.falling-petal {
-    position: absolute;
-    top: -50px; /* Empieza por encima de la pantalla */
-    font-size: 2em; /* Tamaño del emoji */
-    animation: fall linear infinite;
-    pointer-events: none; /* No interactúa con el ratón */
-    z-index: -1; /* Detrás del contenido principal */
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh); /* Cae hasta el final de la pantalla */
-    }
-}
         #yt-player {
             width: 1px;
             height: 1px;
@@ -226,10 +210,30 @@
             
             .flower-border {
                 height: 120px;
+                justify-content: space-evenly;
+                padding: 0 10px;
             }
             
             .flower {
-                transform: scale(0.8);
+                transform: scale(0.6);
+                margin: 0 -10px;
+            }
+            
+            .flower:nth-child(1) { 
+                animation-delay: 0s; 
+                transform: translateY(-10px) scale(0.6);
+            }
+            .flower:nth-child(2) { 
+                animation-delay: 0.5s; 
+                transform: translateY(-5px) scale(0.6);
+            }
+            .flower:nth-child(3) { 
+                animation-delay: 1s; 
+                transform: translateY(-15px) scale(0.6);
+            }
+            
+            .flower svg {
+                margin: 0 !important;
             }
         }
         
@@ -240,6 +244,29 @@
             
             .flowers-container {
                 height: 180px;
+            }
+            
+            .flower-border {
+                justify-content: space-evenly;
+                padding: 0 20px;
+            }
+            
+            .flower {
+                transform: scale(0.8);
+                margin: 0 -8px;
+            }
+            
+            .flower:nth-child(1) { 
+                animation-delay: 0s; 
+                transform: translateY(-10px) scale(0.8);
+            }
+            .flower:nth-child(2) { 
+                animation-delay: 0.5s; 
+                transform: translateY(-5px) scale(0.8);
+            }
+            .flower:nth-child(3) { 
+                animation-delay: 1s; 
+                transform: translateY(-15px) scale(0.8);
             }
         }
         
@@ -275,7 +302,7 @@
         <div class="flowers-container">
             <div class="flower-border">
                 <!-- Large white lily with yellow center - LEFT -->
-                <svg class="flower" width="120" height="160" viewBox="0 0 120 160" style="margin-right: 40px;">
+                <svg class="flower" width="120" height="160" viewBox="0 0 120 160">
                     <!-- Tallo más grueso -->
                     <rect x="58" y="80" width="6" height="80" fill="#4caf50" rx="3"/>
                     <!-- Hojas más grandes -->
@@ -308,7 +335,7 @@
                 </svg>
                 
                 <!-- Large sunflower - CENTER -->
-                <svg class="flower" width="140" height="180" viewBox="0 0 140 180" style="margin: 0 20px;">
+                <svg class="flower" width="140" height="180" viewBox="0 0 140 180">
                     <!-- Tallo principal más grueso -->
                     <rect x="68" y="90" width="8" height="90" fill="#4caf50" rx="4"/>
                     <!-- Hojas grandes más naturales -->
@@ -360,7 +387,7 @@
                 </svg>
                 
                 <!-- Large yellow tulip - RIGHT -->
-                <svg class="flower" width="110" height="170" viewBox="0 0 110 170" style="margin-left: 40px;">
+                <svg class="flower" width="110" height="170" viewBox="0 0 110 170">
                     <!-- Tallo grueso -->
                     <rect x="53" y="80" width="6" height="90" fill="#4caf50" rx="3"/>
                     <!-- Hojas largas características del tulipán -->
@@ -410,36 +437,6 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    const emojis = ['🌼', '🌻']; // Emojis de flores amarillas y blancas
-
-    function createFallingPetal() {
-        const petal = document.createElement('span');
-        petal.classList.add('falling-petal');
-        petal.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        petal.style.left = Math.random() * 100 + 'vw';
-        
-        const animationDuration = Math.random() * 8 + 5; // Entre 5 y 13 segundos
-        petal.style.animationDuration = animationDuration + 's';
-        
-        petal.style.animationDelay = Math.random() * 5 + 's'; 
-
-        body.appendChild(petal);
-
-        petal.addEventListener('animationiteration', () => {
-            petal.remove();
-            createFallingPetal();
-        });
-    }
-
-    for (let i = 0; i < 30; i++) {
-        createFallingPetal();
-    }
-});
-      
-      
         // Floating petals animation
         function createPetal() {
             const petal = document.createElement('div');
