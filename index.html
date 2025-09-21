@@ -11,7 +11,23 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
     
     <style>
-                #yt-player {
+    
+    /* Estilos para los pétalos/emojis */
+.falling-petal {
+    position: absolute;
+    top: -50px; /* Empieza por encima de la pantalla */
+    font-size: 2em; /* Tamaño del emoji */
+    animation: fall linear infinite;
+    pointer-events: none; /* No interactúa con el ratón */
+    z-index: -1; /* Detrás del contenido principal */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Cae hasta el final de la pantalla */
+    }
+}
+        #yt-player {
             width: 1px;
             height: 1px;
             opacity: 0;
@@ -394,6 +410,36 @@
     </div>
 
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const emojis = ['🌼', '🌻']; // Emojis de flores amarillas y blancas
+
+    function createFallingPetal() {
+        const petal = document.createElement('span');
+        petal.classList.add('falling-petal');
+        petal.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        petal.style.left = Math.random() * 100 + 'vw';
+        
+        const animationDuration = Math.random() * 8 + 5; // Entre 5 y 13 segundos
+        petal.style.animationDuration = animationDuration + 's';
+        
+        petal.style.animationDelay = Math.random() * 5 + 's'; 
+
+        body.appendChild(petal);
+
+        petal.addEventListener('animationiteration', () => {
+            petal.remove();
+            createFallingPetal();
+        });
+    }
+
+    for (let i = 0; i < 30; i++) {
+        createFallingPetal();
+    }
+});
+      
+      
         // Floating petals animation
         function createPetal() {
             const petal = document.createElement('div');
